@@ -1,0 +1,16 @@
+<resources>
+    <dimen name="pageMargin">5dp</dimen>
+    <dimen name="offset">10dp</dimen>
+    <dimen name="pageMarginAndOffset">15dp</dimen>
+
+    <dimen name="textsize_cell_title">@dimen/textsize_medium</dimen>
+    <dimen name="textsize_cell_subtitle">@dimen/textsize_small</dimen>
+
+    <dimen name="textsize_largexxl">24sp</dimen>
+    <dimen name="textsize_largexl">22sp</dimen>
+    <dimen name="textsize_large">18sp</dimen>
+    <dimen name="textsize_medium">16sp</dimen>
+    <dimen name="textsize_small">13sp</dimen>
+    <dimen name="textsize_xsmall">11sp</dimen>
+    <dimen name="textsize_xxsmall">10sp</dimen>
+</resources>

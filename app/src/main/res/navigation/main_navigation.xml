@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph">
+
+<!--    <fragment-->
+<!--        android:id="@+id/mainFragment"-->
+<!--        android:name="com.example.iesbcoinsclass.presentation.ui.main.MainFragment"-->
+<!--        tools:layout="@layout/main_fragment" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_mainFragment_to_detailsFragment"-->
+<!--            app:destination="@id/detailsFragment"-->
+<!--            app:enterAnim="@anim/slide_in_right"-->
+<!--            app:exitAnim="@anim/slide_out_left"-->
+<!--            app:popEnterAnim="@anim/slide_in_left"-->
+<!--            app:popExitAnim="@anim/slide_out_right"/>-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/detailsFragment"-->
+<!--        android:name="com.example.coinmarketcapproject.ui.detail.DetailsFragment"-->
+<!--        tools:layout="@layout/fragment_details" >-->
+<!--        <argument-->
+<!--            android:name="coin"-->
+<!--            app:argType="com.example.coinmarketcapproject.core.domain.CoinEntity" />-->
+<!--    </fragment>-->
+</navigation>

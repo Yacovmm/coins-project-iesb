@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Iesb Coins Class</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_no_internet_connection_default_error">Houve um problema com sua requisição</string>
+    <string name="last_updated_str">Ultima atualização: %s</string>
+    <string name="marketcap">MarketCap: %s</string>
+    <string name="price">Preço: %s</string>
+    <string name="know_more">Saiba mais</string>
+    <string name="placeholder_title">Nenhum dado dísponivel</string>
+    <string name="placeholder_subtitle">Se conecte a internet para buscar os dados</string>
+</resources>
