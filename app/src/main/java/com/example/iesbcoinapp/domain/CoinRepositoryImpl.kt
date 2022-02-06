@@ -3,10 +3,12 @@ package com.example.iesbcoinapp.domain
 import com.example.iesbcoinapp.core.utils.ResponseWrapper
 import com.example.iesbcoinapp.data.CoinRepository
 import com.example.iesbcoinapp.data.database.CoinDao
+import com.example.iesbcoinapp.data.database.models.CoinObject
 import com.example.iesbcoinapp.data.network.ApiService
 import com.example.iesbcoinapp.data.network.utils.RetrofitWrapper
 import com.example.iesbcoinapp.domain.entities.CoinEntity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class CoinRepositoryImpl @Inject constructor(
@@ -33,14 +35,20 @@ class CoinRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertCoins(coins: List<CoinEntity>) {
-        TODO("Not yet implemented")
+        coins.forEach { entity ->
+            val coinObj = CoinObject.mapper(entity)
+
+            coinDao.insertCoin(coinObj)
+        }
     }
 
     override fun getCoinsFromDb(): Flow<List<CoinEntity>> {
-        TODO("Not yet implemented")
+        return coinDao.getAllCoins().map {
+            CoinEntity.mapper(it)
+        }
     }
 
     override suspend fun deleteAll() {
-        TODO("Not yet implemented")
+        coinDao.deleteAll()
     }
 }

@@ -1,10 +1,8 @@
 package com.example.iesbcoinapp.data.database.models
 
-import android.os.Parcelable
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
+import com.example.iesbcoinapp.domain.entities.CoinEntity
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,6 +24,16 @@ data class CoinObject constructor(
             val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
             val date = Date()
             return formatter.format(date)
+        }
+
+        fun mapper(coin: CoinEntity): CoinObject {
+            return CoinObject(
+                id = coin.id.toLong(),
+                name = coin.name,
+                marketCap = coin.marketCap,
+                price = coin.price,
+                iconUrl = coin.icon
+            )
         }
 
     }

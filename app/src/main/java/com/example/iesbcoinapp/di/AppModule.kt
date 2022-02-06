@@ -1,10 +1,14 @@
 package com.example.iesbcoinapp.di
 
+import com.example.iesbcoinapp.BuildConfig
 import com.example.iesbcoinapp.core.utils.Constants.BASE_URL
+import com.example.iesbcoinapp.data.CoinRepository
+import com.example.iesbcoinapp.data.database.CoinDao
 import com.example.iesbcoinapp.data.network.ApiService
 import com.example.iesbcoinapp.data.network.interceptors.HeaderInterceptor
 import com.example.iesbcoinapp.data.network.utils.RetrofitWrapper
 import com.example.iesbcoinapp.data.network.utils.RetrofitWrapperImpl
+import com.example.iesbcoinapp.domain.CoinRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,12 +26,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HeaderInterceptor())
-        .addInterceptor(
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        )
-        .build()
+    fun provideOkHttpClient(): OkHttpClient {
+        return if (BuildConfig.DEBUG) {
+            OkHttpClient.Builder()
+                .addInterceptor(HeaderInterceptor())
+                .addInterceptor(
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                )
+                .build()
+        } else {
+            OkHttpClient.Builder()
+                .addInterceptor(HeaderInterceptor())
+                .build()
+        }
+    }
 
 
     @Provides
@@ -51,6 +63,14 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofitWrapper(): RetrofitWrapper = RetrofitWrapperImpl()
+
+    @Provides
+    @Singleton
+    fun provideRepository(
+        service: ApiService,
+        dao: CoinDao,
+        retrofitWrapper: RetrofitWrapper
+    ): CoinRepository = CoinRepositoryImpl(service, dao, retrofitWrapper)
 
 
 
