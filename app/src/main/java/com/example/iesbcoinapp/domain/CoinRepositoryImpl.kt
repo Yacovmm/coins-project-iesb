@@ -26,6 +26,8 @@ class CoinRepositoryImpl @Inject constructor(
             is ResponseWrapper.Success -> {
                 val entities = CoinEntity.mapper(response.result.data)
 
+                insertCoins(coins = entities)
+
                 ResponseWrapper.Success(result = entities)
             }
             is ResponseWrapper.Error -> {

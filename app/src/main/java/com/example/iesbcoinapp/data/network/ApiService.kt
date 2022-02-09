@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("cryptocurrency/listing/latest")
+    @GET("cryptocurrency/listings/latest")
     suspend fun getLatestPrices(
         @Query("start")
         start: Int = 1,

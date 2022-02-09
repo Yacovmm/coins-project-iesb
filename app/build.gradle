@@ -39,7 +39,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
+        freeCompilerArgs += "-Xjvm-default=all" // Only required for 2.x.
     }
 }
 
@@ -62,6 +63,9 @@ dependencies {
     // OKHttp
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+
+    // Coil
+    implementation 'io.coil-kt:coil:1.4.0'
 
     // Core KTX
     implementation "androidx.core:core-ktx:1.7.0"
@@ -96,9 +100,6 @@ dependencies {
 
     // RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-
-    // Coil
-    implementation 'io.coil-kt:coil:1.4.0'
 
     //Skeleton
     implementation 'com.ethanhua:skeleton:1.1.2'

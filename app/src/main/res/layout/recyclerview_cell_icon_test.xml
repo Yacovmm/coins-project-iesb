@@ -38,10 +38,12 @@
             android:layout_height="40dp"
             android:padding="5dp"
             android:visibility="visible"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@drawable/ic_launcher_background" />
+            tools:src="@drawable/ic_launcher_background"
+            android:contentDescription="Crypto" />
 
         <LinearLayout
             android:layout_width="wrap_content"

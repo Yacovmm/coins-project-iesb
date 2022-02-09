@@ -3,14 +3,13 @@ package com.example.iesbcoinapp.presentation.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DiffUtil
-import com.example.iesbcoinapp.presentation.base.BaseFragment
 import com.example.iesbcoinapp.R
 import com.example.iesbcoinapp.core.utils.toggleVisibility
 import com.example.iesbcoinapp.databinding.MainFragmentBinding
-import com.example.iesbcoinapp.domain.entities.CoinEntity
+import com.example.iesbcoinapp.presentation.base.BaseFragment
 import com.example.iesbcoinapp.presentation.base.GenericListSkeleton
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment :
@@ -19,7 +18,8 @@ class MainFragment :
     private val viewModel: MainViewModel by viewModels()
 
     // Adapter
-    //private lateinit var genericAdapter: GenericAdapter<CoinEntity>
+    @Inject
+    lateinit var mainAdapter: MainAdapter
 
     private lateinit var skeleton: GenericListSkeleton
 
@@ -52,29 +52,27 @@ class MainFragment :
             skeleton.hideSkeletons()
             binding.lastUpdated.text = getString(R.string.last_updated_str, data.first().update_at)
 
-            //genericAdapter.submitList(data)
+            mainAdapter.submitList(data)
         }
     }
 
     private fun setupRecyclerView() {
-//        binding.recyclerview.apply {
-//            adapter = adapter
+        binding.recyclerview.adapter = mainAdapter
+    }
+
+//    private val diffUtil = object : DiffUtil.ItemCallback<CoinEntity>() {
+//        override fun areItemsTheSame(
+//            oldItem: CoinEntity,
+//            newItem: CoinEntity
+//        ): Boolean {
+//            return oldItem.hashCode() == newItem.hashCode()
 //        }
-    }
-
-    private val diffUtil = object : DiffUtil.ItemCallback<CoinEntity>() {
-        override fun areItemsTheSame(
-            oldItem: CoinEntity,
-            newItem: CoinEntity
-        ): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
-        }
-
-        override fun areContentsTheSame(
-            oldItem: CoinEntity,
-            newItem: CoinEntity
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
+//
+//        override fun areContentsTheSame(
+//            oldItem: CoinEntity,
+//            newItem: CoinEntity
+//        ): Boolean {
+//            return oldItem.id == newItem.id
+//        }
+//    }
 }

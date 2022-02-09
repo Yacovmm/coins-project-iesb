@@ -1,5 +1,6 @@
 package com.example.iesbcoinapp.di
 
+import androidx.recyclerview.widget.DiffUtil
 import com.example.iesbcoinapp.BuildConfig
 import com.example.iesbcoinapp.core.utils.Constants.BASE_URL
 import com.example.iesbcoinapp.data.CoinRepository
@@ -9,6 +10,8 @@ import com.example.iesbcoinapp.data.network.interceptors.HeaderInterceptor
 import com.example.iesbcoinapp.data.network.utils.RetrofitWrapper
 import com.example.iesbcoinapp.data.network.utils.RetrofitWrapperImpl
 import com.example.iesbcoinapp.domain.CoinRepositoryImpl
+import com.example.iesbcoinapp.domain.entities.CoinEntity
+import com.example.iesbcoinapp.presentation.main.MainAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -73,5 +76,28 @@ object AppModule {
     ): CoinRepository = CoinRepositoryImpl(service, dao, retrofitWrapper)
 
 
+    @Provides
+    @Singleton
+    fun provideDiffUtilCallback() : DiffUtil.ItemCallback<CoinEntity> = object : DiffUtil.ItemCallback<CoinEntity>() {
+            override fun areItemsTheSame(
+                oldItem: CoinEntity,
+                newItem: CoinEntity
+            ): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
+            }
+
+            override fun areContentsTheSame(
+                oldItem: CoinEntity,
+                newItem: CoinEntity
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+
+    @Provides
+    @Singleton
+    fun provideMainAdapter(
+        diffUtil: DiffUtil.ItemCallback<CoinEntity>
+    ): MainAdapter = MainAdapter(diffUtil)
 
 }
