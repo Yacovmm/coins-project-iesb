@@ -20,7 +20,6 @@ class MainViewModel @Inject constructor(
 
     val coinsData = repository.getCoinsFromDb()
         .onStart {
-            repository.getLatestCoins()
             ViewState.Loading
         }
         .catch {
