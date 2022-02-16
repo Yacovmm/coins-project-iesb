@@ -15,7 +15,8 @@ data class CoinObject constructor(
     var marketCap: Double = 0.0,
     var price: Double = 0.0,
     var iconUrl: String = "",
-    var created_at: String = getCurrentDate()
+    var created_at: String = getCurrentDate(),
+    var isFavourite: Boolean = false
 ): Serializable {
 
     companion object {
@@ -32,7 +33,8 @@ data class CoinObject constructor(
                 name = coin.name,
                 marketCap = coin.marketCap,
                 price = coin.price,
-                iconUrl = coin.icon
+                iconUrl = coin.icon,
+                isFavourite = coin.isFavourite
             )
         }
 

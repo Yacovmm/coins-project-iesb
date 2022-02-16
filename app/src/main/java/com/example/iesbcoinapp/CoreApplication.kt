@@ -2,6 +2,9 @@ package com.example.iesbcoinapp
 
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.work.Configuration
 import coil.ImageLoader
 import coil.ImageLoaderFactory

@@ -51,7 +51,7 @@
             android:layout_marginStart="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/drag_image"
+            app:layout_constraintEnd_toStartOf="@id/star_icon"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toTopOf="parent">
@@ -93,12 +93,12 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/drag_image"
+            android:id="@+id/star_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_margin="15dp"
             android:padding="8dp"
-            android:src="@drawable/ic_next"
+            android:src="@drawable/ic_baseline_star_outline_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

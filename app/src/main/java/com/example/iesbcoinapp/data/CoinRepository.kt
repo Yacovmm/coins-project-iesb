@@ -14,4 +14,6 @@ interface CoinRepository {
 
     suspend fun deleteAll()
 
+    suspend fun favouriteCoin(id: Int, status: Boolean)
+
 }

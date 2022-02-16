@@ -12,6 +12,7 @@ import com.example.iesbcoinapp.data.network.utils.RetrofitWrapperImpl
 import com.example.iesbcoinapp.domain.CoinRepositoryImpl
 import com.example.iesbcoinapp.domain.entities.CoinEntity
 import com.example.iesbcoinapp.presentation.main.MainAdapter
+import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -95,7 +96,6 @@ object AppModule {
         }
 
     @Provides
-    @Singleton
     fun provideMainAdapter(
         diffUtil: DiffUtil.ItemCallback<CoinEntity>
     ): MainAdapter = MainAdapter(diffUtil)

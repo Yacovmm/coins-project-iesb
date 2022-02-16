@@ -1,10 +1,11 @@
 package com.example.iesbcoinapp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.iesbcoinapp.CoreApplication
 import com.example.iesbcoinapp.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +20,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        CoreApplication.appInBackGround = true
+
         setupActionBarWithNavController(navController)
+
+        intent?.let {
+            val title = it.getStringExtra("title")
+            val body = it.getStringExtra("body")
+            println("Ola Mundo")
+            println(title)
+            println(body)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        CoreApplication.appInBackGround = true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 
     override fun onSupportNavigateUp(): Boolean {

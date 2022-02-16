@@ -20,4 +20,7 @@ interface CoinDao {
     @Query("DELETE FROM coin_table")
     suspend fun deleteAll()
 
+    @Query("UPDATE coin_table SET isFavourite=:status WHERE id=:id")
+    suspend fun favouriteCoin(status: Boolean, id: Long)
+
 }

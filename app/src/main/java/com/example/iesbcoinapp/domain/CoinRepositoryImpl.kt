@@ -53,4 +53,8 @@ class CoinRepositoryImpl @Inject constructor(
     override suspend fun deleteAll() {
         coinDao.deleteAll()
     }
+
+    override suspend fun favouriteCoin(id: Int, status: Boolean) {
+        coinDao.favouriteCoin(status, id.toLong())
+    }
 }

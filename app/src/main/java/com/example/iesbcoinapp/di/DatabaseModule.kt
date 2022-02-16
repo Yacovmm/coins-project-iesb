@@ -36,9 +36,7 @@ object DatabaseModule {
             println("Criei")
         }
 
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-        }
+
     }
 
     @Provides

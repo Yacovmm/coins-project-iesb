@@ -9,7 +9,8 @@ data class CoinEntity(
     val marketCap: Double,
     val price: Double,
     val update_at: String = "",
-    val icon: String = "https://s2.coinmarketcap.com/static/img/coins/64x64/$id.png"
+    val icon: String = "https://s2.coinmarketcap.com/static/img/coins/64x64/$id.png",
+    val isFavourite: Boolean = false
 ) {
 
     companion object {
@@ -34,7 +35,8 @@ data class CoinEntity(
                     marketCap = obj.marketCap,
                     price = obj.price,
                     icon = obj.iconUrl,
-                    update_at = obj.created_at
+                    update_at = obj.created_at,
+                    isFavourite = obj.isFavourite
                 )
             }
         }

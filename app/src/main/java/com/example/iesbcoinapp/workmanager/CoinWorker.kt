@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
+import com.example.iesbcoinapp.CoreApplication
 import com.example.iesbcoinapp.R
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -31,7 +32,7 @@ class CoinWorker @AssistedInject constructor(
     // https://stackoverflow.com/questions/53297982/how-to-run-workmanager-immediately
     override suspend fun doWork(): Result {
         try {
-            setForeground(createForegroundInfo())
+//            setForeground(createForegroundInfo())
 
             val response = repository.getLatestCoins()
             println("Passei aqui")
@@ -97,7 +98,7 @@ class CoinWorker @AssistedInject constructor(
     @TargetApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel(): NotificationChannel {
         return NotificationChannel(
-            "channelId", "ChannelName", NotificationManager.IMPORTANCE_LOW
+            "channelId", "ChannelName", NotificationManager.IMPORTANCE_DEFAULT
         ).also { channel ->
             val notificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
