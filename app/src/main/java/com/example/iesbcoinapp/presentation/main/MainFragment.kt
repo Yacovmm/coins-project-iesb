@@ -1,25 +1,26 @@
 package com.example.iesbcoinapp.presentation.main
 
-import android.annotation.TargetApi
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.os.Bundle
+import android.text.format.DateFormat
+import android.view.*
 import androidx.core.app.NotificationCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.work.WorkManager
 import com.example.iesbcoinapp.R
 import com.example.iesbcoinapp.core.utils.toggleVisibility
 import com.example.iesbcoinapp.databinding.MainFragmentBinding
+import com.example.iesbcoinapp.infra.AlarmManagerHelper
+import com.example.iesbcoinapp.infra.HourAndMinute
 import com.example.iesbcoinapp.presentation.MainActivity
+import com.example.iesbcoinapp.presentation.alarm.AlarmFragmentDialog
 import com.example.iesbcoinapp.presentation.base.BaseFragment
 import com.example.iesbcoinapp.presentation.base.GenericListSkeleton
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -33,13 +34,15 @@ class MainFragment :
     @Inject
     lateinit var mainAdapter: MainAdapter
 
-    private lateinit var concatAdapter: ConcatAdapter
-
     @Inject
     lateinit var favoriteAdapter: MainAdapter
 
+    private lateinit var concatAdapter: ConcatAdapter
 
     private lateinit var skeleton: GenericListSkeleton
+
+    private lateinit var picker: MaterialTimePicker
+
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> MainFragmentBinding
         get() = MainFragmentBinding::inflate
@@ -51,7 +54,43 @@ class MainFragment :
 
         setupObservers()
 
+        initTimePicker()
+
         teste()
+    }
+
+    private fun initTimePicker() {
+        val isSystem24Hour = DateFormat.is24HourFormat(requireContext().applicationContext)
+        val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+
+        picker = MaterialTimePicker.Builder()
+            .setTimeFormat(clockFormat)
+            .setHour(12)
+            .setMinute(10)
+            .setTitleText("Selecione o alarme")
+            .build()
+
+        picker.addOnPositiveButtonClickListener {
+            println("${picker.hour} ${picker.minute}" )
+            AlarmManagerHelper.setAlarm(
+                requireContext(),
+                HourAndMinute(picker.hour, picker.minute)
+            )
+        }
+        picker.addOnNegativeButtonClickListener {
+            // call back code
+        }
+        picker.addOnCancelListener {
+            // call back code
+        }
+        picker.addOnDismissListener {
+            // call back code
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     private fun teste() {
@@ -117,7 +156,10 @@ class MainFragment :
             skeleton.hideSkeletons()
             binding.lastUpdated.text = getString(R.string.last_updated_str, data.first().update_at)
 
-            mainAdapter.submitList(data)
+            val favoritesCoins = data.filter { it.isFavourite }
+
+            favoriteAdapter.submitList(favoritesCoins.toList())
+            mainAdapter.submitList(data.toList())
         }
     }
 
@@ -125,9 +167,30 @@ class MainFragment :
         mainAdapter.setOnStarClick { id, status ->
             viewModel.favouriteCoin(id, status)
         }
+        favoriteAdapter.setOnStarClick { id, status ->
+            viewModel.favouriteCoin(id, status)
+        }
         concatAdapter = ConcatAdapter()
+        concatAdapter.addAdapter(favoriteAdapter)
         concatAdapter.addAdapter(mainAdapter)
         binding.recyclerview.adapter = concatAdapter
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_alarm -> {
+                println("Teste")
+//                AlarmFragmentDialog().show(childFragmentManager, "ALARM_TAG")
+                picker.show(childFragmentManager, "TAG")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.topbar_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 //    private val diffUtil = object : DiffUtil.ItemCallback<CoinEntity>() {

@@ -1,4 +1,4 @@
-package com.example.iesbcoinapp.workmanager
+package com.example.iesbcoinapp.infra.workmanager
 
 import android.annotation.TargetApi
 import android.app.Notification
@@ -10,7 +10,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
-import com.example.iesbcoinapp.CoreApplication
 import com.example.iesbcoinapp.R
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject

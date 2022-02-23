@@ -1,6 +1,9 @@
 package com.example.iesbcoinapp.presentation
 
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -20,8 +23,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        CoreApplication.appInBackGround = true
-
         setupActionBarWithNavController(navController)
 
         intent?.let {
@@ -33,20 +34,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        CoreApplication.appInBackGround = true
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+//    override fun onCreateContextMenu(
+//        menu: ContextMenu?,
+//        v: View?,
+//        menuInfo: ContextMenu.ContextMenuInfo?
+//    ) {
+//        super.onCreateContextMenu(menu, v, menuInfo)
+//    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.topbar_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
 }

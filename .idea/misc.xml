@@ -7,11 +7,13 @@
         <entry key="app/src/main/res/drawable-v24/ic_next.xml" value="0.22135416666666666" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21296296296296297" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20108695652173914" />
+        <entry key="app/src/main/res/layout/alarm_dialog.xml" value="0.11548913043478261" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recyclerview_cell_icon.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/recyclerview_cell_icon_test.xml" value="0.20108695652173914" />
         <entry key="app/src/main/res/layout/view_placeholder.xml" value="0.2078125" />
+        <entry key="app/src/main/res/menu/topbar_menu.xml" value="0.2015625" />
       </map>
     </option>
   </component>

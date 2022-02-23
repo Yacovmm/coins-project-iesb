@@ -8,7 +8,7 @@ import androidx.work.*
 import com.example.iesbcoinapp.core.utils.Constants.DATABASE_NAME
 import com.example.iesbcoinapp.data.database.CoinDao
 import com.example.iesbcoinapp.data.database.CoinDatabase
-import com.example.iesbcoinapp.workmanager.CoinWorker
+import com.example.iesbcoinapp.infra.workmanager.CoinWorker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
